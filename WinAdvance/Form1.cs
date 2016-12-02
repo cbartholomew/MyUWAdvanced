@@ -43,7 +43,7 @@ namespace WinAdvance
                lblConfirmedWorksheet.BackColor != Color.DarkGreen ||
                lblAdvancedOptions.BackColor != Color.DarkGreen)
             {
-                MessageBox.Show("Donna, you forgot a step :-), make sure everything is green!", "Hey Donna...");
+                MessageBox.Show("Donna, you forgot a step make sure everything is green!", "Hey Donna... :-)");
                 return;
             }
 
@@ -67,7 +67,7 @@ namespace WinAdvance
             }
             catch (Exception)
             {
-                MessageBox.Show("Donna, did you close the Output.csv file? Close it, then press OK.","Hey Donna...");
+                MessageBox.Show("Donna, did you close the Output.csv file? Close it, then press OK.","Hey Donna... :-)");
                 File.Delete(csvOutput);
             }
 
