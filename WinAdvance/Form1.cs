@@ -37,7 +37,16 @@ namespace WinAdvance
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void button1_Click(object sender, EventArgs e)
-        {          
+        {
+
+            if (lblExcelFileStatus.BackColor != Color.DarkGreen ||
+               lblConfirmedWorksheet.BackColor != Color.DarkGreen ||
+               lblAdvancedOptions.BackColor != Color.DarkGreen)
+            {
+                MessageBox.Show("Donna, you forgot a step :-), make sure everything is green!", "Hey Donna...");
+                return;
+            }
+
             KeyInput input = new KeyInput();
             ApplicationSettings settings 
                 = new ApplicationSettings();
@@ -58,7 +67,7 @@ namespace WinAdvance
             }
             catch (Exception)
             {
-                MessageBox.Show("Donna, did you close the Output.csv file? Close it, then press OK.");
+                MessageBox.Show("Donna, did you close the Output.csv file? Close it, then press OK.","Hey Donna...");
                 File.Delete(csvOutput);
             }
 
@@ -264,10 +273,12 @@ namespace WinAdvance
 
                     if (File.Exists(this.excelFileLocation)) {
                         lblFileStatus.Text = "File Found!";
+                        lblExcelFileStatus.BackColor = Color.DarkGreen;
                     }
                     else
                     {
                         lblFileStatus.Text = "File Not Found!";
+                        lblExcelFileStatus.BackColor = Color.DarkRed;
                     }
                 }
                 catch(Exception ex)
@@ -280,6 +291,26 @@ namespace WinAdvance
         private void groupBox1_Enter(object sender, EventArgs e)
         {
 
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnConfirmWorksheet_Click(object sender, EventArgs e)
+        {
+            lblConfirmedWorksheet.BackColor = Color.DarkGreen;
+        }
+
+        private void radioEmailInactive_CheckedChanged(object sender, EventArgs e)
+        {
+            lblAdvancedOptions.BackColor = Color.DarkGreen;
+        }
+
+        private void radioEmailActive_CheckedChanged(object sender, EventArgs e)
+        {
+            lblAdvancedOptions.BackColor = Color.DarkGreen;
         }
     }
 }
