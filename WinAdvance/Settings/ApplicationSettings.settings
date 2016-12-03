@@ -15,10 +15,10 @@
       <Value Profile="(Default)">C:\Users\Christopher\Documents\Visual Studio 2013\Output.html</Value>
     </Setting>
     <Setting Name="FILE_EXPORT_PATH" Type="System.String" Scope="User">
-      <Value Profile="(Default)">E:\Output.csv</Value>
+      <Value Profile="(Default)">C:\Users\Christopher\Desktop\Temp\Output.csv</Value>
     </Setting>
     <Setting Name="START_AT_ROW" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">278</Value>
+      <Value Profile="(Default)">368</Value>
     </Setting>
   </Settings>
 </SettingsFile>
