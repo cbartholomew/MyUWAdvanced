@@ -73,7 +73,7 @@ namespace WinAdvance.Settings {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\Christopher\\Desktop\\Temp\\Output.csv")]
+        [global::System.Configuration.DefaultSettingValueAttribute("E:\\Output.csv")]
         public string FILE_EXPORT_PATH {
             get {
                 return ((string)(this["FILE_EXPORT_PATH"]));

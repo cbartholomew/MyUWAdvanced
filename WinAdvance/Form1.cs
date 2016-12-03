@@ -128,12 +128,16 @@ namespace WinAdvance
                 foreach (var browserInstruction in input.InstructionsBrowser)
                 {
                     SendKeys.SendWait(browserInstruction);
-                    Thread.Sleep(settings.DEFAULT_SLEEP_INTERVAL);
+
+                    if (browserInstruction != "^{w}") { 
+                        Thread.Sleep(settings.DEFAULT_SLEEP_INTERVAL);
+                    }
                 }
 
                 // remove files
                 CleanUp(settings.WEB_EXPORT_PATH);
 
+                /*
                 Process notepad = Process.Start(settings.DEFAULT_TEXT_EDITOR);
                 Thread.Sleep(settings.DEFAULT_SLEEP_INTERVAL);
                 foreach (var notepadInstruction in input.InstructionsNotepad)
@@ -141,8 +145,10 @@ namespace WinAdvance
                     SendKeys.SendWait(notepadInstruction);
                     Thread.Sleep(settings.DEFAULT_SLEEP_INTERVAL);
                 }
-                              
-                var html = File.ReadAllText(settings.WEB_EXPORT_PATH);
+                */                
+                //var html = File.ReadAllText(settings.WEB_EXPORT_PATH);
+
+                var html = Clipboard.GetText();
 
                 Dictionary<string, EmailRecord> emailList = loadHtmlGetElementsBySelector(html, advanced);
 
