@@ -93,8 +93,23 @@ namespace WinAdvance
             // excel row number from original
             int rowIndexNo = 1;
 
+            int startFromIndex = 0;
+
+            // startFrom
+            if (settings.START_AT_ROW > 0)
+            {
+                startFromIndex = settings.START_AT_ROW;
+            }
+
             foreach (string[] person in idNumbers)
             {
+
+                if (startFromIndex > 0) {
+                    if (rowIndexNo - 1 <= startFromIndex) {
+                        rowIndexNo++;
+                        continue;
+                    }
+                }
 
                 // skip if missing id number
                 if (String.IsNullOrEmpty(person[0]))

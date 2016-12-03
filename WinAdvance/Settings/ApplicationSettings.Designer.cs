@@ -73,13 +73,25 @@ namespace WinAdvance.Settings {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("E:\\Output.csv")]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Output.csv")]
         public string FILE_EXPORT_PATH {
             get {
                 return ((string)(this["FILE_EXPORT_PATH"]));
             }
             set {
                 this["FILE_EXPORT_PATH"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("238")]
+        public int START_AT_ROW {
+            get {
+                return ((int)(this["START_AT_ROW"]));
+            }
+            set {
+                this["START_AT_ROW"] = value;
             }
         }
     }
