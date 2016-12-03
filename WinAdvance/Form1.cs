@@ -22,7 +22,7 @@ namespace WinAdvance
     public partial class frmMain : Form
     {
         public string excelFileLocation { get; set; }
-
+        public bool breakOutExited { get; set; }
         /// <summary>
         /// 
         /// </summary>
@@ -38,6 +38,8 @@ namespace WinAdvance
         /// <param name="e"></param>
         private void button1_Click(object sender, EventArgs e)
         {
+            // track enter and exit
+            this.breakOutExited = false;
 
             if (lblExcelFileStatus.BackColor != Color.DarkGreen ||
                lblConfirmedWorksheet.BackColor != Color.DarkGreen ||
@@ -96,11 +98,18 @@ namespace WinAdvance
             int rowIndexNo = 1;
 
             int startFromIndex = 0;
+            int endIndexRow = 0;
 
             // startFrom
             if (settings.START_AT_ROW > 0)
             {
                 startFromIndex = settings.START_AT_ROW;
+            }
+            
+            // startFrom
+            if (settings.END_AT_ROW > 0)
+            {
+                endIndexRow = settings.END_AT_ROW;
             }
 
             foreach (string[] person in idNumbers)
@@ -137,17 +146,6 @@ namespace WinAdvance
                 // remove files
                 CleanUp(settings.WEB_EXPORT_PATH);
 
-                /*
-                Process notepad = Process.Start(settings.DEFAULT_TEXT_EDITOR);
-                Thread.Sleep(settings.DEFAULT_SLEEP_INTERVAL);
-                foreach (var notepadInstruction in input.InstructionsNotepad)
-                {
-                    SendKeys.SendWait(notepadInstruction);
-                    Thread.Sleep(settings.DEFAULT_SLEEP_INTERVAL);
-                }
-                */                
-                //var html = File.ReadAllText(settings.WEB_EXPORT_PATH);
-
                 var html = Clipboard.GetText();
 
                 Dictionary<string, EmailRecord> emailList = loadHtmlGetElementsBySelector(html, advanced);
@@ -181,6 +179,23 @@ namespace WinAdvance
                             tempRecord.status,
                             rowIndexNo); 
                     }           
+                }
+
+                if (this.breakOutExited)
+                {
+                    // break out
+                    break;
+                }
+
+                if (endIndexRow > 0)
+                {
+                    if (rowIndexNo - 1 >= endIndexRow)
+                    {
+                        rowIndexNo++;
+
+                        // break out as it is the end.
+                        break;
+                    }
                 }
             }            
         }
@@ -336,8 +351,14 @@ namespace WinAdvance
             lblAdvancedOptions.BackColor = Color.DarkGreen;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnKill_Click(object sender, EventArgs e)
         {
+            this.breakOutExited = true;
             Application.ExitThread();
             Application.Exit();
         }

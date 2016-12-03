@@ -18,16 +18,13 @@ namespace WinAdvance.Configuration
         public const string ENTER_KEY           = "{ENTER}";
         public const string CLOSE_APPLICATION   = "%{F4}";
 
-        public List<string> InstructionsBrowser  { get; set; }
-        public List<string> InstructionsNotepad  { get; set; }
+        public List<string> InstructionsBrowser  { get; set; }        
 
         public KeyInput() 
         {
-            this.InstructionsBrowser = new List<string>();
-            this.InstructionsNotepad = new List<string>();
+            this.InstructionsBrowser = new List<string>();           
             
-            initializeInstructionsForBrowsers();
-            initializeInstructionsForNotePad();
+            initializeInstructionsForBrowsers();            
         }
 
         private void initializeInstructionsForBrowsers() 
@@ -39,16 +36,5 @@ namespace WinAdvance.Configuration
             this.InstructionsBrowser.Insert(4,CLOSE_WINDOW);                                    
         }
 
-        private void initializeInstructionsForNotePad()
-        {
-            ApplicationSettings settings 
-                = new ApplicationSettings();
-
-            this.InstructionsNotepad.Insert(0,PASTE_HTML);
-            this.InstructionsNotepad.Insert(1,SAVE_FILE); 
-            this.InstructionsNotepad.Insert(2,settings.WEB_EXPORT_PATH);
-            this.InstructionsNotepad.Insert(3,ENTER_KEY);
-            this.InstructionsNotepad.Insert(4,CLOSE_APPLICATION);
-        }
     }
 }

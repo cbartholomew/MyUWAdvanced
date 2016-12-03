@@ -49,19 +49,7 @@ namespace WinAdvance.Settings {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("notepad.exe")]
-        public string DEFAULT_TEXT_EDITOR {
-            get {
-                return ((string)(this["DEFAULT_TEXT_EDITOR"]));
-            }
-            set {
-                this["DEFAULT_TEXT_EDITOR"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\Christopher\\Documents\\Visual Studio 2013\\Output.html")]
+        [global::System.Configuration.DefaultSettingValueAttribute("%userprofile%\\Documents\\WinAdvanced\\Output.html")]
         public string WEB_EXPORT_PATH {
             get {
                 return ((string)(this["WEB_EXPORT_PATH"]));
@@ -73,7 +61,7 @@ namespace WinAdvance.Settings {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\Christopher\\Desktop\\Temp\\Output.csv")]
+        [global::System.Configuration.DefaultSettingValueAttribute("%userprofile%\\Documents\\WinAdvanced\\Output.csv")]
         public string FILE_EXPORT_PATH {
             get {
                 return ((string)(this["FILE_EXPORT_PATH"]));
@@ -92,6 +80,18 @@ namespace WinAdvance.Settings {
             }
             set {
                 this["START_AT_ROW"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int END_AT_ROW {
+            get {
+                return ((int)(this["END_AT_ROW"]));
+            }
+            set {
+                this["END_AT_ROW"] = value;
             }
         }
     }
