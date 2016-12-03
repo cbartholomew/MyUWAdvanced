@@ -335,5 +335,10 @@ namespace WinAdvance
         {
             lblAdvancedOptions.BackColor = Color.DarkGreen;
         }
+
+        private void btnKill_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

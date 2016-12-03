@@ -40,6 +40,7 @@
             this.lblConfirmedWorksheet = new System.Windows.Forms.Label();
             this.btnConfirmWorksheet = new System.Windows.Forms.Button();
             this.lblAdvancedOptions = new System.Windows.Forms.Label();
+            this.btnKill = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -157,11 +158,22 @@
             this.lblAdvancedOptions.Size = new System.Drawing.Size(35, 37);
             this.lblAdvancedOptions.TabIndex = 10;
             // 
+            // btnKill
+            // 
+            this.btnKill.Location = new System.Drawing.Point(3, 197);
+            this.btnKill.Name = "btnKill";
+            this.btnKill.Size = new System.Drawing.Size(44, 80);
+            this.btnKill.TabIndex = 11;
+            this.btnKill.Text = "Stop";
+            this.btnKill.UseVisualStyleBackColor = true;
+            this.btnKill.Click += new System.EventHandler(this.btnKill_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(326, 294);
+            this.Controls.Add(this.btnKill);
             this.Controls.Add(this.lblAdvancedOptions);
             this.Controls.Add(this.btnConfirmWorksheet);
             this.Controls.Add(this.lblConfirmedWorksheet);
@@ -195,6 +207,7 @@
         private System.Windows.Forms.Label lblConfirmedWorksheet;
         private System.Windows.Forms.Button btnConfirmWorksheet;
         private System.Windows.Forms.Label lblAdvancedOptions;
+        private System.Windows.Forms.Button btnKill;
     }
 }
 
