@@ -62,14 +62,14 @@ namespace WinAdvance
                 // on new run, remove output file
                 if (File.Exists(csvOutput))
                 {
-                    File.Copy(csvOutput, csvOutput.Replace(".csv","_" + DateTime.Now.ToShortTimeString() + ".csv"));
+                    File.Copy(csvOutput, csvOutput.Replace(".csv","_" + DateTime.Now.ToFileTime() + ".csv"));
                     File.Delete(csvOutput);
                 }
             }
             catch (Exception)
             {
                 MessageBox.Show("Donna, did you close the Output.csv file? Close it, then press OK.","Hey Donna... :-)");
-                File.Copy(csvOutput, csvOutput.Replace(".csv", "_" + DateTime.Now.ToShortTimeString() + ".csv"));
+                File.Copy(csvOutput, csvOutput.Replace(".csv", "_" + DateTime.Now.ToFileTime() + ".csv"));
                 File.Delete(csvOutput);
             }
 
@@ -338,6 +338,7 @@ namespace WinAdvance
 
         private void btnKill_Click(object sender, EventArgs e)
         {
+            Application.ExitThread();
             Application.Exit();
         }
     }
