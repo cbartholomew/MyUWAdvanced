@@ -579,10 +579,10 @@ namespace WinAdvance
                 {
                     SendKeys.SendWait(browserInstruction);
 
-                    if (browserInstruction != "^{w}")
-                    {
+                    //if (browserInstruction != "^{w}")
+                    //{
                         Thread.Sleep(settings.DEFAULT_SLEEP_INTERVAL);
-                    }
+                    //}
                 }
 
                 var html = Clipboard.GetText();
@@ -607,10 +607,10 @@ namespace WinAdvance
                 {
                     SendKeys.SendWait(browserInstruction);
 
-                    if (browserInstruction != "^{w}")
-                    {
+                    //if (browserInstruction != "^{w}")
+                    //{
                         Thread.Sleep(settings.DEFAULT_SLEEP_INTERVAL);
-                    }
+                    //}
                 }
 
                 var htmlEdit = Clipboard.GetText();
