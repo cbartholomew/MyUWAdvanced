@@ -41,6 +41,7 @@
             this.btnConfirmWorksheet = new System.Windows.Forms.Button();
             this.lblAdvancedOptions = new System.Windows.Forms.Label();
             this.btnKill = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -50,7 +51,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(257, 80);
             this.button1.TabIndex = 0;
-            this.button1.Text = "Make it EzDonna!";
+            this.button1.Text = "Advance";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -168,11 +169,22 @@
             this.btnKill.UseVisualStyleBackColor = true;
             this.btnKill.Click += new System.EventHandler(this.btnKill_Click);
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(316, 197);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(257, 80);
+            this.button2.TabIndex = 12;
+            this.button2.Text = "Sales Force";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(326, 294);
+            this.ClientSize = new System.Drawing.Size(667, 294);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.btnKill);
             this.Controls.Add(this.lblAdvancedOptions);
             this.Controls.Add(this.btnConfirmWorksheet);
@@ -208,6 +220,7 @@
         private System.Windows.Forms.Button btnConfirmWorksheet;
         private System.Windows.Forms.Label lblAdvancedOptions;
         private System.Windows.Forms.Button btnKill;
+        private System.Windows.Forms.Button button2;
     }
 }
 

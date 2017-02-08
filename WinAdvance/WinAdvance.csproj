@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\Advanced.cs" />
+    <Compile Include="Classes\SalesForce.cs" />
     <Compile Include="Classes\uwExcel.cs" />
     <Compile Include="Configuration\KeyInput.cs" />
     <Compile Include="Classes\EmailRecord.cs" />

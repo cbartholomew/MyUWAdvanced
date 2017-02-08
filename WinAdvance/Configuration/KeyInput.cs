@@ -20,20 +20,37 @@ namespace WinAdvance.Configuration
 
         public List<string> InstructionsBrowser  { get; set; }        
 
-        public KeyInput() 
+        public KeyInput(bool isAdvance = true) 
         {
-            this.InstructionsBrowser = new List<string>();           
-            
-            initializeInstructionsForBrowsers();            
+            this.InstructionsBrowser = new List<string>();
+
+            if (isAdvance)
+            {
+                initializeInstructionsForAdvance();
+            }
+            else
+            {
+                initializeInstructionsForSalesForce();
+            }
+               
         }
 
-        private void initializeInstructionsForBrowsers() 
+        private void initializeInstructionsForAdvance() 
         {
             this.InstructionsBrowser.Insert(0,VIEW_SOURCE);
             this.InstructionsBrowser.Insert(1,SELECT_ALL);
             this.InstructionsBrowser.Insert(2,COPY_HTML);
             this.InstructionsBrowser.Insert(3,CLOSE_WINDOW);
             this.InstructionsBrowser.Insert(4,CLOSE_WINDOW);                                    
+        }
+
+        private void initializeInstructionsForSalesForce()
+        {
+            this.InstructionsBrowser.Insert(0, VIEW_SOURCE);
+            this.InstructionsBrowser.Insert(1, SELECT_ALL);
+            this.InstructionsBrowser.Insert(2, COPY_HTML);
+            this.InstructionsBrowser.Insert(3, CLOSE_WINDOW);
+            this.InstructionsBrowser.Insert(4, CLOSE_WINDOW);
         }
 
     }
