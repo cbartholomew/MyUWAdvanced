@@ -25,7 +25,7 @@ namespace WinAdvance.Settings {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1500")]
+        [global::System.Configuration.DefaultSettingValueAttribute("2000")]
         public int DEFAULT_SLEEP_INTERVAL {
             get {
                 return ((int)(this["DEFAULT_SLEEP_INTERVAL"]));

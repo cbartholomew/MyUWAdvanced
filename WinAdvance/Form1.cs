@@ -585,10 +585,9 @@ namespace WinAdvance
                     }
                 }
 
-                // remove files
-                CleanUp(settings.WEB_EXPORT_PATH);
-
                 var html = Clipboard.GetText();
+
+             
 
                 loadHtmlGetElementsBySelectorSalesForceGetEditLink(html, salesForce);
 
@@ -616,6 +615,7 @@ namespace WinAdvance
 
                 var htmlEdit = Clipboard.GetText();
 
+               
                 Dictionary<string, EmailRecord> emailDictionary = loadHtmlGetElementsBySelector(htmlEdit, salesForce);
 
                 string emailToWrite = "";

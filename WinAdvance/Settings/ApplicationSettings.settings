@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="DEFAULT_SLEEP_INTERVAL" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">1500</Value>
+      <Value Profile="(Default)">2000</Value>
     </Setting>
     <Setting Name="DEFAULT_BROWSER_EXE" Type="System.String" Scope="User">
       <Value Profile="(Default)">chrome.exe</Value>
