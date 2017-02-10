@@ -548,7 +548,7 @@ namespace WinAdvance
 
                 // get default values
                 salesForce.idNumber = person[0];
-                salesForce.oldEmail = person[9];
+                salesForce.oldEmail = person[14];
 
                 if (startFromIndex > 0)
                 {
@@ -575,7 +575,7 @@ namespace WinAdvance
                 {
                     SendKeys.SendWait(browserInstruction);
 
-                    Thread.Sleep(settings.DEFAULT_SLEEP_INTERVAL);                    
+                    Thread.Sleep(settings.DEFAULT_SLEEP_INTERVAL);
                 }
 
                 var html = Clipboard.GetText();
@@ -583,12 +583,14 @@ namespace WinAdvance
                 loadHtmlGetElementsBySelectorSalesForceGetEditLink(html, salesForce);
                 
                 // if no edit link returned skip
-                if (salesForce.endpointEditSearchFieldTemplate == "")
-                {
-                    rowIndexNo++;
-                    continue;
-                }
-                
+                //if (salesForce.endpointEditSearchFieldTemplate == "")
+                //{
+                //    rowIndexNo++;
+                //    continue;
+                //}
+
+                salesForce.rowNo = rowIndexNo;
+
                 salesForcePersons.Add(salesForce);
 
                 rowIndexNo++;
@@ -649,22 +651,23 @@ namespace WinAdvance
 
             foreach (SalesForce updatedSalesForceItem in updatedSalesforceList)
             {
-
                 string emailToWrite = "";
-
-                // weigh out emails
-                string domain = GetEmail(updatedSalesForceItem.emailRecordList);
-
-                // find the email to write
-                emailToWrite = updatedSalesForceItem.emailRecordList.Find(p => p.Contains(domain));
-
-                // check index
-                rowIndexNo++;
-
                 bool hasEmailChanged = false;
-                if (updatedSalesForceItem.oldEmail != emailToWrite)
-                {
-                    hasEmailChanged = true;
+
+                if (updatedSalesForceItem.emailRecordList.Count > 0)
+                { 
+                    // weigh out emails
+                    string domain = GetEmail(updatedSalesForceItem.emailRecordList);
+
+                    // find the email to write
+                    emailToWrite = updatedSalesForceItem.emailRecordList.Find(p => p.Contains(domain));
+
+
+                    if (updatedSalesForceItem.oldEmail != emailToWrite || 
+                        updatedSalesForceItem.oldEmail == "" && emailToWrite != "")
+                    {
+                        hasEmailChanged = true;
+                    }
                 }
 
                 // This text is always added, making the file longer over time
@@ -676,12 +679,10 @@ namespace WinAdvance
                         hasEmailChanged,
                         emailToWrite,
                         updatedSalesForceItem.oldEmail,
-                        rowIndexNo);
+                        updatedSalesForceItem.rowNo);
                 }
 
-
-            }
-          
+            }          
         }
     }
 }

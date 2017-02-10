@@ -49,7 +49,7 @@ namespace WinAdvance.Settings {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\Christopher\\Documents\\WinAdvanced\\Output.html")]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Temp\\bartholomew\\WinAdvanced\\Output.html")]
         public string WEB_EXPORT_PATH {
             get {
                 return ((string)(this["WEB_EXPORT_PATH"]));
@@ -61,7 +61,7 @@ namespace WinAdvance.Settings {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\Christopher\\Documents\\WinAdvanced\\Output.csv")]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Temp\\bartholomew\\WinAdvanced\\Output.csv")]
         public string FILE_EXPORT_PATH {
             get {
                 return ((string)(this["FILE_EXPORT_PATH"]));

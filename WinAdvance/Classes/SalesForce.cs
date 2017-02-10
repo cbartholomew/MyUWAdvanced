@@ -18,6 +18,7 @@ namespace WinAdvance.Classes
         public string elementThree { get; set; }
         public string oldEmail { get; set; }
         public string idNumber { get; set; }
+        public int rowNo { get; set; }
         
         public TREE_TYPE treeType { get; set; }
         public enum TREE_TYPE

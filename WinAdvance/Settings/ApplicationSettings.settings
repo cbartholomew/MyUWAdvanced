@@ -9,10 +9,10 @@
       <Value Profile="(Default)">chrome.exe</Value>
     </Setting>
     <Setting Name="WEB_EXPORT_PATH" Type="System.String" Scope="User">
-      <Value Profile="(Default)">C:\Users\Christopher\Documents\WinAdvanced\Output.html</Value>
+      <Value Profile="(Default)">C:\Temp\bartholomew\WinAdvanced\Output.html</Value>
     </Setting>
     <Setting Name="FILE_EXPORT_PATH" Type="System.String" Scope="User">
-      <Value Profile="(Default)">C:\Users\Christopher\Documents\WinAdvanced\Output.csv</Value>
+      <Value Profile="(Default)">C:\Temp\bartholomew\WinAdvanced\Output.csv</Value>
     </Setting>
     <Setting Name="START_AT_ROW" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
