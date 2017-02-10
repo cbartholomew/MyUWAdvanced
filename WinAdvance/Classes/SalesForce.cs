@@ -11,10 +11,14 @@ namespace WinAdvance.Classes
         public const string ENDPOINT_BASE = "https://na43.salesforce.com";
         public const string ENDPOINT_SEARCH_TEMPLATE = "/_ui/search/ui/UnifiedSearchResults?searchType=2&sen=001&sen=003&sen=701&sen=00O&str=#IDNUMBER#";
         public Dictionary<string, bool> emailHeaderIdentities { get; set; }
+        public List<string> emailRecordList { get; set; }
         public string endpointEditSearchFieldTemplate { get; set; }
         public string elementOne { get; set; }
         public string elementTwo { get; set; }
         public string elementThree { get; set; }
+        public string oldEmail { get; set; }
+        public string idNumber { get; set; }
+        
         public TREE_TYPE treeType { get; set; }
         public enum TREE_TYPE
         {
@@ -24,8 +28,11 @@ namespace WinAdvance.Classes
 
         public SalesForce(TREE_TYPE tree) {
             this.treeType = tree;
+            this.emailRecordList = new List<string>();
             setEmailMeta(tree);
             loadEmailSettings();
+
+
         }
 
         public string GetNewEndpoint(string idNumber)
@@ -117,6 +124,13 @@ namespace WinAdvance.Classes
                     return EMAIL_WEIGHT.OTHER;
             }
 
+        }
+
+        public SalesForce DeepCopy()
+        {
+            SalesForce other = (SalesForce)this.MemberwiseClone();
+            other.emailRecordList = new List<string>();            
+            return other;
         }
      
     }

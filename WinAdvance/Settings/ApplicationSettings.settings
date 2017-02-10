@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="DEFAULT_SLEEP_INTERVAL" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">2000</Value>
+      <Value Profile="(Default)">1000</Value>
     </Setting>
     <Setting Name="DEFAULT_BROWSER_EXE" Type="System.String" Scope="User">
       <Value Profile="(Default)">chrome.exe</Value>
@@ -15,7 +15,7 @@
       <Value Profile="(Default)">C:\Users\Christopher\Documents\WinAdvanced\Output.csv</Value>
     </Setting>
     <Setting Name="START_AT_ROW" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">955</Value>
+      <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="END_AT_ROW" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>

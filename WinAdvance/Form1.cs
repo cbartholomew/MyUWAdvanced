@@ -511,17 +511,6 @@ namespace WinAdvance
                 File.Delete(csvOutput);
             }
 
-
-            // check what was chosen
-            //Advanced.TREE_TYPE treeChosen = (this.radioEmailInactive.Checked)
-                //? Advanced.TREE_TYPE.EMAIL_INACTIVE : Advanced.TREE_TYPE.EMAIL_ACTIVE;
-
-            //// based on the chosen value, load the new configuration
-            //Advanced advanced =
-            //        new Advanced(treeChosen);
-
-            SalesForce salesForce = new SalesForce(SalesForce.TREE_TYPE.PERSON_SEARCH);
-
             // exit if the file goes away
             if (!File.Exists(this.excelFileLocation))
             {
@@ -530,7 +519,7 @@ namespace WinAdvance
 
             List<string[]> idNumbers = uwExcel.createFromExcel(this.excelFileLocation,
             "A",
-            "E",
+            "O",
             txtWorksheetName.Text);
 
             // excel row number from original
@@ -551,8 +540,15 @@ namespace WinAdvance
                 endIndexRow = settings.END_AT_ROW;
             }
 
+            List<SalesForce> salesForcePersons = new List<SalesForce>();
+
             foreach (string[] person in idNumbers)
             {
+                SalesForce salesForce = new SalesForce(SalesForce.TREE_TYPE.PERSON_SEARCH);
+
+                // get default values
+                salesForce.idNumber = person[0];
+                salesForce.oldEmail = person[9];
 
                 if (startFromIndex > 0)
                 {
@@ -579,84 +575,23 @@ namespace WinAdvance
                 {
                     SendKeys.SendWait(browserInstruction);
 
-                    //if (browserInstruction != "^{w}")
-                    //{
-                        Thread.Sleep(settings.DEFAULT_SLEEP_INTERVAL);
-                    //}
+                    Thread.Sleep(settings.DEFAULT_SLEEP_INTERVAL);                    
                 }
 
                 var html = Clipboard.GetText();
 
-             
-
                 loadHtmlGetElementsBySelectorSalesForceGetEditLink(html, salesForce);
-
+                
                 // if no edit link returned skip
                 if (salesForce.endpointEditSearchFieldTemplate == "")
                 {
                     rowIndexNo++;
                     continue;
                 }
+                
+                salesForcePersons.Add(salesForce);
 
-                Process chromeEdit = Process.Start(settings.DEFAULT_BROWSER_EXE,
-                salesForce.GetEditEndpoint());
-
-                Thread.Sleep(settings.DEFAULT_SLEEP_INTERVAL);
-
-                foreach (var browserInstruction in input.InstructionsBrowser)
-                {
-                    SendKeys.SendWait(browserInstruction);
-
-                    //if (browserInstruction != "^{w}")
-                    //{
-                        Thread.Sleep(settings.DEFAULT_SLEEP_INTERVAL);
-                    //}
-                }
-
-                var htmlEdit = Clipboard.GetText();
-
-               
-                Dictionary<string, EmailRecord> emailDictionary = loadHtmlGetElementsBySelector(htmlEdit, salesForce);
-
-                string emailToWrite = "";
-
-                // if no emails returned skip
-                if (emailDictionary.Count > 0)
-                {
-                    List<string> emailList = new List<string>();
-
-                    foreach (KeyValuePair<string, EmailRecord> emailRecord in emailDictionary)
-                    {
-                        EmailRecord record = emailRecord.Value;
-
-                        emailList.Add(record.emailAddress);
-                    }
-
-                    // weigh out emails
-                    string domain = GetEmail(emailList);
-
-                    // find the email to write
-                    emailToWrite = emailList.Find(p => p.Contains(domain));
-                }
-
-                // check index
                 rowIndexNo++;
-
-                // This text is always added, making the file longer over time
-                // if it is not deleted.
-                using (StreamWriter sw = File.AppendText(csvOutput))
-                {
-                    sw.WriteLine("{0},{1},{2}",
-                        person[0],
-                        emailToWrite,
-                        rowIndexNo);
-                }
-
-                if (this.breakOutExited)
-                {
-                    // break out
-                    break;
-                }
 
                 if (endIndexRow > 0)
                 {
@@ -668,7 +603,85 @@ namespace WinAdvance
                         break;
                     }
                 }
-            }            
+            }
+
+            List<SalesForce> updatedSalesforceList = new List<SalesForce>();
+
+            foreach (SalesForce salesForceElement in salesForcePersons)
+            {
+                Process chromeEdit = Process.Start(settings.DEFAULT_BROWSER_EXE,
+                salesForceElement.GetEditEndpoint());
+
+                Thread.Sleep(settings.DEFAULT_SLEEP_INTERVAL);
+
+                foreach (var browserInstruction in input.InstructionsBrowser)
+                {
+                    SendKeys.SendWait(browserInstruction);
+
+                    Thread.Sleep(settings.DEFAULT_SLEEP_INTERVAL);
+                }
+
+                var htmlEdit = Clipboard.GetText();
+
+                Dictionary<string, EmailRecord> emailDictionary = loadHtmlGetElementsBySelector(htmlEdit, salesForceElement);
+
+                List<string> emailList = new List<string>();
+                // if no emails returned skip
+                if (emailDictionary.Count > 0)
+                {             
+                    foreach (KeyValuePair<string, EmailRecord> emailRecord in emailDictionary)
+                    {
+                        EmailRecord record = emailRecord.Value;
+
+                        emailList.Add(record.emailAddress);
+                    }
+                }
+
+                // copy the object
+                SalesForce salesForceNew = salesForceElement.DeepCopy();
+
+                // assign the new email list
+                salesForceNew.emailRecordList = emailList;
+
+                // make new list
+                updatedSalesforceList.Add(salesForceNew);
+            }
+
+            foreach (SalesForce updatedSalesForceItem in updatedSalesforceList)
+            {
+
+                string emailToWrite = "";
+
+                // weigh out emails
+                string domain = GetEmail(updatedSalesForceItem.emailRecordList);
+
+                // find the email to write
+                emailToWrite = updatedSalesForceItem.emailRecordList.Find(p => p.Contains(domain));
+
+                // check index
+                rowIndexNo++;
+
+                bool hasEmailChanged = false;
+                if (updatedSalesForceItem.oldEmail != emailToWrite)
+                {
+                    hasEmailChanged = true;
+                }
+
+                // This text is always added, making the file longer over time
+                // if it is not deleted.
+                using (StreamWriter sw = File.AppendText(csvOutput))
+                {
+                    sw.WriteLine("{0},{1},{2},{3},{4}",
+                        updatedSalesForceItem.idNumber,
+                        hasEmailChanged,
+                        emailToWrite,
+                        updatedSalesForceItem.oldEmail,
+                        rowIndexNo);
+                }
+
+
+            }
+          
         }
     }
 }

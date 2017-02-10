@@ -25,7 +25,7 @@ namespace WinAdvance.Settings {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("2000")]
+        [global::System.Configuration.DefaultSettingValueAttribute("1000")]
         public int DEFAULT_SLEEP_INTERVAL {
             get {
                 return ((int)(this["DEFAULT_SLEEP_INTERVAL"]));
@@ -73,7 +73,7 @@ namespace WinAdvance.Settings {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("955")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
         public int START_AT_ROW {
             get {
                 return ((int)(this["START_AT_ROW"]));
