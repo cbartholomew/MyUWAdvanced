@@ -73,7 +73,7 @@ namespace WinAdvance.Settings {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("955")]
         public int START_AT_ROW {
             get {
                 return ((int)(this["START_AT_ROW"]));

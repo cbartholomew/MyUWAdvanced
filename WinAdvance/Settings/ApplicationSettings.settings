@@ -15,7 +15,7 @@
       <Value Profile="(Default)">C:\Users\Christopher\Documents\WinAdvanced\Output.csv</Value>
     </Setting>
     <Setting Name="START_AT_ROW" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
+      <Value Profile="(Default)">955</Value>
     </Setting>
     <Setting Name="END_AT_ROW" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
